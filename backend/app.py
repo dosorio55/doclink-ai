@@ -79,6 +79,23 @@ def upload_file():
     
     return jsonify({'error': 'Invalid file type. Only PDF files are allowed.'}), 400
 
+@app.route('/files', methods=['GET'])
+def list_files():
+    try:
+        files = []
+        for filename in os.listdir(PROCESSED_FOLDER):
+            if filename.endswith('.md'):
+                file_id = filename.split('_')[0]
+                original_name = '_'.join(filename.split('_')[1:]).rsplit('.', 1)[0]
+                files.append({
+                    'id': file_id,
+                    'filename': filename,
+                    'original_name': original_name
+                })
+        return jsonify({'files': files})
+    except Exception as e:
+        return jsonify({'error': f'Failed to list files: {str(e)}'}), 500
+
 @app.route('/download/<file_id>', methods=['GET'])
 def download_file(file_id):
     try:

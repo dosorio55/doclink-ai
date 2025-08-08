@@ -25,3 +25,8 @@ dist-ssr
 
 # Virtual environment
 backend/venv
+backend/dist
+backend/build
+
+# Environment variables
+.env
