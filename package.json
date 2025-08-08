@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "build:full": "bash build.sh"
+    "build:full": "bash build.sh",
+    "build:full:win": "tauri build --target x86_64-pc-windows-gnu"
   },
   "dependencies": {
     "react": "^19.1.0",
